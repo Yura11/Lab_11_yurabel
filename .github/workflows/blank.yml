@@ -17,11 +17,7 @@ jobs:
       uses: docker/setup-qemu-action@v2
 
     - name: Build Docker Image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: false
-        tags: my-docker-image
+      run: docker buildx build --file Dockerfile --tag my-docker-image .
 
     - name: Run Docker Container
       run: docker run my-docker-image
