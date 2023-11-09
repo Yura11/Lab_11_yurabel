@@ -1,0 +1,28 @@
+name: Docker Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: actions/setup-docker@v2
+
+    - name: Build Docker Image
+      run: docker build -t my-docker-image .
+
+    - name: Run Docker Container
+      run: docker run my-docker-image
+
+    - name: Execute Bash Script
+      run: |
+        chmod +x script.sh
+        ./script.sh
